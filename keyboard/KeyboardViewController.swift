@@ -6,37 +6,27 @@
 //
 
 import UIKit
+import SwiftUI
 
 class KeyboardViewController: UIInputViewController {
-
-    @IBOutlet var nextKeyboardButton: UIButton!
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
-        
-        // Add custom view sizing constraints here
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Perform custom UI setup here
-        self.nextKeyboardButton = UIButton(type: .system)
-        
-        self.nextKeyboardButton.setTitle(NSLocalizedString("Next Keyboard", comment: "Title for 'Next Keyboard' button"), for: [])
-        self.nextKeyboardButton.sizeToFit()
-        self.nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-        
-        self.view.addSubview(self.nextKeyboardButton)
-        
-        self.nextKeyboardButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.nextKeyboardButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        /*
+         Instantiate and render our SwiftUI RootView
+         
+         Tip - the built in method `advanceToNextInput` exits our keyboard and takes
+         the user to the next
+         */
+        setup(with: RootView())
     }
     
     override func viewWillLayoutSubviews() {
-        self.nextKeyboardButton.isHidden = !self.needsInputModeSwitchKey
         super.viewWillLayoutSubviews()
     }
     
@@ -46,15 +36,29 @@ class KeyboardViewController: UIInputViewController {
     
     override func textDidChange(_ textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
-        
-        var textColor: UIColor
-        let proxy = self.textDocumentProxy
-        if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
-            textColor = UIColor.white
-        } else {
-            textColor = UIColor.black
-        }
-        self.nextKeyboardButton.setTitleColor(textColor, for: [])
     }
+}
 
+// MARK: - Custom Helpers for rendering SwiftUI (Don't worry about this)
+
+extension KeyboardViewController {
+    func setup<Content: View>(with view: Content) {
+        self.view.subviews.forEach { $0.removeFromSuperview() }
+        let controller = KeyboardHostingController(rootView: view)
+        controller.add(to: self)
+    }
+}
+
+public class KeyboardHostingController<Content: View>: UIHostingController<Content> {
+    func add(to controller: KeyboardViewController) {
+        controller.addChild(self)
+        controller.view.addSubview(view)
+        didMove(toParent: controller)
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.leadingAnchor.constraint(equalTo: controller.view.leadingAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: controller.view.trailingAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: controller.view.topAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: controller.view.bottomAnchor).isActive = true
+    }
 }
