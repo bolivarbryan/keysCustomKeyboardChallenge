@@ -29,4 +29,4 @@ Complete the custom keyboard extension that's started in this repo. Use the prov
 * [How to output text from an iOS Custom Keyboard](https://developer.apple.com/documentation/uikit/uitextdocumentproxy)
 
 ## Example layout:
-![](challengeAssets/example.png)
+<img src="./challengeAssets/example.png" width=200>
