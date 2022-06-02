@@ -28,10 +28,10 @@ Complete the custom keyboard extension that's started in this repo. Use the prov
 ## Instructions for running the keyboard as-is
 1. Open **keysCustomKeyboardChallenge.xcodeproj** in Xcode
 2. Select target **keyboard** from the target dropdown list and a simulator or your own device to run it on.
-<image src="./challengeAssets/keyboard-target-selection.png">
+<image src="./challengeAssets/keyboard-target-selection.png" />
 3. You will see a popup with options for a "host" application where you can run the keyboard extension. You can choose any application to run the keyboard, but **messages** is probably the most relevant
-<image src="./challengeAssets/app-popup.png" width="200">
-4. You will need to turn on the keyboard in **Settings**. In the simulator/device navigate to Settings -> **General** -> **Keyboard** -> **Keyboards** -> **Add New Keyboard** -> **keysCustomKeyboardChallenge**. Then navigate back to **Messages** and you should be able to switch to the keyboard using the globe button. [See demo video here](https://frontend-coding-challenge-api.herokuapp.com/)
+<image src="./challengeAssets/app-popup.png" width="200" />
+4. You will need to turn on the keyboard in **Settings**. In the simulator/device navigate to **Settings** -> **General** -> **Keyboard** -> **Keyboards** -> **Add New Keyboard** -> **keysCustomKeyboardChallenge**. Then navigate back to **Messages** and you should be able to switch to the keyboard using the globe button. [See demo video here](https://frontend-coding-challenge-api.herokuapp.com/)
 
 ## Resources
 * [Apple's iOS Custom keyboard getting started guide (the initial setup is already completed)](https://developer.apple.com/documentation/uikit/keyboards_and_input/creating_a_custom_keyboard)
