@@ -25,7 +25,7 @@ Complete the custom keyboard extension that's started in this repo. Use the prov
   * Transitions between different states (loading, error, rendering the content)
   * Dark mode
 
-## Instructions for running the keyboard as-is
+## Instructions for running the keyboard on device or simulator
 1. Open **keysCustomKeyboardChallenge.xcodeproj** in Xcode
 2. Select target **keyboard** from the target dropdown list and a simulator or your own device to run it on.  
 <image src="./challengeAssets/keyboard-target-selection.png">
