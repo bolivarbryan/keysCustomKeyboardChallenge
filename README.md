@@ -2,7 +2,7 @@
 Given that the custom keyboard extension is the heart of our application, we'd like to see you create one of your own!
 
 ## Goal:
-Complete the custom keyboard extension that's started in this repo. Use the provided endpoint (see "Requirements" below) to load content from an API and render it in the keyboard UI (see example image at the bottom of this page). 
+Complete the custom keyboard extension that's started in this repo. Use the provided endpoint (see [Requirements](#requirements) below) to load content from an API and render it in the keyboard UI (see [example layout](#example-layout) at the bottom of this page). 
 
 ## Requirements
 * All of the UI work should be done in SwiftUI. I already setup the initial rendering of our root SwiftUI view in `RootView.swift`. You should be able to implement a typical SwifUI application from there.
@@ -10,7 +10,10 @@ Complete the custom keyboard extension that's started in this repo. Use the prov
 * You can send a `GET` request to `https://frontend-coding-challenge-api.herokuapp.com/getContent` to fetch the content.
   * Remember to display a loading state while the content is being fetched.
   * The API will randomly (about 1/5 times) return an error with status code `500` and json data `{ error: 'Random Error' }`. Make sure you handle this.
-* Tapping each button should cycle through all of the `content` attached to the button (inspect the data coming back from the api to figure out the extra content).
+* Tapping each button should output its content to the text input (see [resources](#resources) below).
+  * When you tap the first time, the app should output the first (`index == 0`) piece of attached content. When you tap the second time, it should output the second piece, etc
+  * When you've reached the last piece of content, tapping again should cycle back to the beginning
+  * TIP: inspect the data coming back from the api to figure out the structure of the extra content.
 * Match Apple's keyboard styling as best you can.
 * Make sure to include a button to exit your custom keyboard and take the user back to the default keyboard
 
