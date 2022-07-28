@@ -23,7 +23,12 @@ class KeyboardViewController: UIInputViewController {
          Tip - the built in method `advanceToNextInput` exits our keyboard and takes
          the user to the next
          */
-        setup(with: RootView())
+        
+        setup(with: RootView(tappedCallback: { text in
+            self.clearTextDocumentProxy()
+            self.textDocumentProxy.insertText(text)
+        }))
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -36,6 +41,16 @@ class KeyboardViewController: UIInputViewController {
     
     override func textDidChange(_ textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
+    }
+    
+    private func clearTextDocumentProxy() {
+        if let word:String = self.textDocumentProxy.documentContextBeforeInput
+        {
+            for _ in 0 ..< word.count {
+                self.textDocumentProxy.deleteBackward()
+            }
+        }
+
     }
 }
 

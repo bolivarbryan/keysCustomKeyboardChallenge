@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct RootView: View {
+    var tappedCallback: ((String) -> Void)
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ContentView(tappedCallback: tappedCallback)
             .frame(height: 260)
     }
 }
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView()
+        RootView { text in
+            print(text)
+        }
     }
 }
